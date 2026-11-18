@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundraising and charity · Live dashboards · Farzad Vaziri</title>
+<meta name="description" content="Six live dashboards on how charities raise money, look after their supporters and account for every pound, by Farzad Vaziri.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Fundraising and charity · Live dashboards">
+<meta property="og:description" content="Six live dashboards on how charities raise money, look after their supporters and account for every pound.">
+<meta property="og:image" content="https://farzad-vaziri.github.io/fundraising-and-charity/assets/previews/mib-main.jpg">
+<meta property="og:type" content="website">
+<style>
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/fraunces-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/fraunces-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;src:url(assets/fonts/fraunces-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:600;font-display:swap;src:url(assets/fonts/fraunces-latin-600-italic.woff2) format("woff2")}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/work-sans-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:500;font-display:swap;src:url(assets/fonts/work-sans-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Work Sans";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/work-sans-latin-600-normal.woff2) format("woff2")}
+
+:root{
+  --bg:#faf6ef; --card:#fffdf9; --ink:#2b1d2f; --soft:#5e5163; --mute:#857a88;
+  --plum:#5a2a5c; --plum-ink:#f6eee4; --plum-soft:#d9c6d6; --gold:#a87a22; --gold-hi:#d8ad55;
+  --rule:#e4d9c8; --rule-2:#cdbfa9; --live:#2f7a4f; --shadow:0 1px 0 rgba(43,29,47,.04),0 10px 30px -18px rgba(43,29,47,.35);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif; --sans:"Work Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --img-filter:none;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#1a1320; --card:#231a29; --ink:#f1e8dc; --soft:#cbbfc9; --mute:#9d91a0;
+    --plum:#3a1b3d; --plum-ink:#f6eee4; --plum-soft:#d2bccd; --gold:#d9b25f; --gold-hi:#e7c57b;
+    --rule:#3a2e40; --rule-2:#54465a; --live:#6cc58f; --shadow:0 1px 0 rgba(0,0,0,.2),0 12px 30px -18px rgba(0,0,0,.7);
+    --img-filter:brightness(.9);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.6;font-feature-settings:"lnum" 1}
+img{display:block;max-width:100%;height:auto;filter:var(--img-filter)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--bg);padding:.5rem 1rem;z-index:10}
+.skip:focus{left:1rem;top:1rem}
+.wrap{max-width:76rem;margin:0 auto;padding:0 2rem}
+
+/* Masthead */
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--rule);font-size:.8125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.top .a{font-weight:600;color:var(--plum)}
+@media (prefers-color-scheme:dark){.top .a{color:var(--gold)}}
+.top .c{white-space:nowrap;font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;font-size:1rem;color:var(--ink)}
+
+/* Hero */
+.hero{padding:4.5rem 0 3rem;display:grid;grid-template-columns:1.25fr 1fr;gap:3.5rem;align-items:end}
+.kick{font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 1rem}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,7.5vw,6rem);line-height:.98;letter-spacing:-.02em;margin:0}
+h1 i{font-style:italic;color:var(--gold)}
+.intro{font-family:var(--serif);font-size:1.3rem;line-height:1.5;color:var(--soft);margin:1.6rem 0 0;max-width:36rem}
+.note{font-size:.9rem;color:var(--mute);margin:1rem 0 0}
+.toc{border-top:2px solid var(--ink);padding-top:.9rem}
+.toc h2{font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 .5rem;color:var(--mute);font-weight:600}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;align-items:baseline;gap:.75rem;padding:.6rem 0;text-decoration:none;border-bottom:1px solid var(--rule)}
+.toc a b{font-family:var(--serif);font-weight:600;color:var(--gold);min-width:1.6rem}
+.toc a span{flex:1;font-family:var(--serif);font-size:1.15rem}
+.toc a i{font-style:normal;font-size:.8125rem;color:var(--mute)}
+.toc a:hover span{color:var(--plum);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+@media (prefers-color-scheme:dark){.toc a:hover span{color:var(--gold-hi)}}
+
+/* Numbers strip */
+.nums{border-top:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);margin:0 0 4.5rem;padding:1.6rem 0 1.5rem}
+.nums h2{font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 1.1rem;color:var(--mute);font-weight:600}
+.nums ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:0}
+.nums li{padding:0 1.1rem;border-left:1px solid var(--rule)}
+.nums li:first-child{border-left:0;padding-left:0}
+.nums a{text-decoration:none;display:block}
+.nums b{display:block;font-family:var(--serif);font-weight:400;font-size:2.4rem;line-height:1.05;letter-spacing:-.01em;color:var(--plum)}
+@media (prefers-color-scheme:dark){.nums b{color:var(--gold-hi)}}
+.nums span{display:block;font-size:.875rem;line-height:1.4;color:var(--soft);margin-top:.45rem}
+.nums em{display:block;font-style:normal;font-size:.75rem;color:var(--mute);margin-top:.35rem;letter-spacing:.02em}
+.nums a:hover span{color:var(--ink)}
+
+/* Featured */
+.feat{background:var(--plum);color:var(--plum-ink);border-radius:4px;padding:3rem;display:grid;grid-template-columns:1.45fr 1fr;gap:3rem;margin:0 0 5rem;scroll-margin-top:1rem}
+.feat .m img{border-radius:3px;box-shadow:0 18px 40px -20px rgba(0,0,0,.6)}
+.lbl{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--gold-hi)}
+.lbl .dot{color:#8fd8a8}
+.feat .q{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--plum-soft);margin:1.1rem 0 .2rem}
+.feat h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.4vw,2.75rem);line-height:1.08;margin:0 0 1rem;letter-spacing:-.01em}
+.feat h2 a{text-decoration:none}
+.feat h2 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.feat p{margin:0 0 1rem;color:#efe3ea}
+.feat .big{display:flex;gap:1rem;align-items:baseline;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);padding:.8rem 0;margin:1.2rem 0 1.4rem}
+.feat .big b{font-family:var(--serif);font-weight:400;font-size:2.6rem;line-height:1;color:var(--gold-hi)}
+.feat .big span{font-size:.9rem;color:var(--plum-soft);line-height:1.4}
+.btn{display:inline-block;background:var(--gold-hi);color:#2b1d2f;font-weight:600;font-size:.95rem;padding:.75rem 1.2rem;border-radius:2px;text-decoration:none;margin:.2rem 1rem .6rem 0}
+.btn:hover{background:#f0cf86}
+.more{display:inline-block;color:var(--plum-ink);font-size:.95rem;text-underline-offset:4px}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-top:1.6rem}
+.thumbs img{border-radius:2px;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.thumbs a:hover img{outline:2px solid var(--gold-hi);outline-offset:2px}
+.tags{font-size:.8125rem;color:var(--plum-soft);margin-top:1.2rem;letter-spacing:.02em}
+
+/* Sections */
+.s{margin:0 0 5rem;scroll-margin-top:1rem}
+.ah{display:grid;grid-template-columns:auto 1fr;column-gap:1.5rem;align-items:end;border-bottom:1px solid var(--rule-2);padding-bottom:1.2rem;margin-bottom:2rem}
+.ah .num{grid-row:span 2;font-family:var(--serif);font-weight:400;font-size:4.5rem;line-height:.8;color:var(--gold)}
+.ah .ch{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.ah h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.1;margin:.2rem 0 0;letter-spacing:-.01em}
+.ah p{grid-column:2;margin:.6rem 0 0;color:var(--soft);max-width:44rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:1.6rem;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.card .row{display:flex;justify-content:space-between;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--mute)}
+.card .row .live{color:var(--live)}
+.stat{display:flex;gap:.9rem;align-items:baseline;margin:1rem 0 1.1rem}
+.stat b{font-family:var(--serif);font-weight:400;font-size:2.6rem;line-height:1;color:var(--plum);white-space:nowrap}
+@media (prefers-color-scheme:dark){.stat b{color:var(--gold-hi)}}
+.stat span{font-size:.875rem;line-height:1.4;color:var(--soft)}
+.pic{display:block;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.pic img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%;transition:transform .4s ease}
+.pic:hover img{transform:scale(1.015)}
+.card .q{font-family:var(--serif);font-style:italic;color:var(--gold);margin:1.2rem 0 0;font-size:1.05rem}
+.card h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;line-height:1.2;margin:.15rem 0 .6rem}
+.card h3 a{text-decoration:none}
+.card h3 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.card p{margin:0 0 .9rem;color:var(--soft)}
+.card .src{font-size:.8125rem;color:var(--mute);margin-top:auto;padding-top:.3rem}
+.links{display:flex;flex-wrap:wrap;gap:1.4rem;border-top:1px solid var(--rule);padding-top:.9rem;margin-top:.6rem;font-weight:600;font-size:.95rem}
+.links a{text-decoration:none;color:var(--plum)}
+@media (prefers-color-scheme:dark){.links a{color:var(--gold-hi)}}
+.links a:hover{text-decoration:underline;text-underline-offset:4px}
+.links a+a{color:var(--soft);font-weight:500}
+.card.wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr;column-gap:2rem;align-items:start}
+.card.wide .row,.card.wide .stat{grid-column:2}
+.card.wide .pic{grid-column:1;grid-row:1/span 7}
+.card.wide .q,.card.wide h3,.card.wide p,.card.wide .links{grid-column:2}
+.card.wide .row{margin-bottom:0}
+
+/* Write-ups */
+.wu{display:grid;grid-template-columns:16rem 1fr;gap:3rem;border-top:1px solid var(--rule-2);padding:2.6rem 0;scroll-margin-top:1rem}
+.ah + .wu{border-top:0;padding-top:.6rem}
+.wu .side{position:sticky;top:1.5rem;align-self:start}
+.wu .n{font-family:var(--serif);font-size:3rem;line-height:1;color:var(--gold)}
+.wu h3{font-family:var(--serif);font-weight:600;font-size:1.45rem;line-height:1.2;margin:.5rem 0 .6rem}
+.wu .meta{font-size:.875rem;color:var(--mute);margin:0 0 1.2rem}
+.wu .side .btn{background:var(--plum);color:var(--plum-ink);font-size:.875rem;padding:.6rem 1rem}
+@media (prefers-color-scheme:dark){.wu .side .btn{background:var(--gold-hi);color:#2b1d2f}}
+.wu .body{max-width:44rem}
+.wu h4{font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:1.7rem 0 .4rem;font-weight:600}
+.wu h4:first-child{margin-top:0}
+.wu p,.wu li{color:var(--ink)}
+.wu p{margin:0 0 .8rem}
+.wu ul{margin:0 0 .8rem;padding-left:1.2rem}
+.wu li{margin:.3rem 0}
+.wu li::marker{color:var(--gold)}
+.wu .lead{font-family:var(--serif);font-size:1.2rem;line-height:1.5}
+.wu figure{margin:1.8rem 0 1rem;background:var(--card);border:1px solid var(--rule);padding:.8rem;border-radius:3px}
+.wu figcaption{font-size:.875rem;color:var(--mute);margin-top:.7rem;font-style:italic;font-family:var(--serif)}
+.top-link{font-size:.875rem;color:var(--mute);text-underline-offset:4px}
+
+/* Footer */
+footer{background:var(--plum);color:var(--plum-ink);margin-top:2rem}
+footer .wrap{padding-top:3rem;padding-bottom:3rem;display:grid;grid-template-columns:1fr 2fr;gap:3rem}
+footer .name{font-family:var(--serif);font-size:1.6rem;line-height:1.2}
+footer .name i{display:block;font-size:1rem;color:var(--plum-soft);margin-top:.4rem}
+footer p{margin:0 0 .8rem;font-size:.9rem;color:#e9dbe4}
+footer a{color:var(--gold-hi)}
+
+/* Responsive */
+@media (max-width:1100px){
+  .nums ul{grid-template-columns:repeat(3,1fr);row-gap:1.6rem}
+  .nums li:nth-child(4){border-left:0;padding-left:0}
+  .feat{grid-template-columns:1fr;gap:2rem}
+  .feat .t{max-width:44rem}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:2.5rem;padding-top:3rem}
+  .feat{grid-template-columns:1fr;padding:2rem}
+  .grid{grid-template-columns:1fr}
+  .card.wide{display:flex;align-items:stretch}
+  .card.wide .row{order:-2}
+  .card.wide .stat{order:-1}
+  .wu{grid-template-columns:1fr;gap:1.2rem}
+  .wu .side{position:static}
+  footer .wrap{grid-template-columns:1fr;gap:1.5rem}
+}
+@media (max-width:700px){
+  body{font-size:1rem}
+  .wrap{padding:0 1.15rem}
+  .top{flex-wrap:wrap;gap:.3rem 1rem}
+  .top .b{display:none}
+  .intro{font-size:1.15rem}
+  .nums ul{grid-template-columns:1fr 1fr}
+  .nums li,.nums li:nth-child(4){border-left:0;padding:0 .8rem 0 0}
+  .nums li:nth-child(even){border-left:1px solid var(--rule);padding-left:.9rem}
+  .nums b{font-size:2rem}
+  .feat{padding:1.3rem;margin-left:-.4rem;margin-right:-.4rem}
+  .thumbs{grid-template-columns:1fr 1fr}
+  .card{padding:1.15rem}
+  .stat b{font-size:2.2rem}
+  .ah .num{font-size:3.2rem}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+
+<header class="top">
+  <div class="a">Collection · Fundraising and charity</div>
+  <div class="b">Live dashboards on charity income and supporters</div>
+  <div class="c">Farzad Vaziri</div>
+</header>
+
+<main id="main">
+<div class="hero" id="top">
+  <div>
+    <p class="kick">Six live dashboards</p>
+    <h1>Fundraising <i>&amp;</i> charity</h1>
+    <p class="intro">How charities raise money, look after their supporters and account for every pound. One dashboard uses official statistics on England's national museums, one a real direct-mail appeal, and four a fictional museum charity built on simulated data.</p>
+    <p class="note">All six are live. Every image, title and button opens the dashboard. Apps can take up to 30 seconds to wake.</p>
+  </div>
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#featured"><b>★</b><span>Featured: how national museums pay their way</span><i>01</i></a></li>
+      <li><a href="#raising"><b>01</b><span>Raising and banking the money</span><i>02–04</i></a></li>
+      <li><a href="#supporters"><b>02</b><span>Supporter data and compliance</span><i>05–06</i></a></li>
+      <li><a href="#write-ups"><b>03</b><span>Methods and write-ups</span><i>01–06</i></a></li>
+    </ol>
+  </nav>
+</div>
+
+<section class="nums" aria-labelledby="n-title">
+  <h2 id="n-title">Six numbers from six dashboards</h2>
+  <ul>
+    <li><a href="#featured"><b>£206m</b><span>given to England's 15 national museums in 2024/25</span><em>Dashboard 01</em></a></li>
+    <li><a href="#d-donor"><b>+47%</b><span>more raised when an appeal goes only to donors worth asking</span><em>Dashboard 02</em></a></li>
+    <li><a href="#d-campaign"><b>40%</b><span>chance a £60m campaign reaches its target on time</span><em>Dashboard 03</em></a></li>
+    <li><a href="#d-income"><b>£845k</b><span>of Gift Aid lost in a year, mostly for want of a declaration</span><em>Dashboard 04</em></a></li>
+    <li><a href="#d-crm"><b>3,763</b><span>duplicate supporters found in 50,737 records</span><em>Dashboard 05</em></a></li>
+    <li><a href="#d-email"><b>30.5%</b><span>true open rate, against 59.6% before machine opens are removed</span><em>Dashboard 06</em></a></li>
+  </ul>
+</section>
+
+<!-- Featured -->
+<section class="feat" id="featured" aria-labelledby="f-title">
+  <div class="m">
+    <a href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/mib-main.jpg" width="1336" height="835" alt="Stacked bars of admissions, trading and charitable giving for each of the 15 national museums in 2024/25"></a>
+  </div>
+  <div class="t">
+    <div class="lbl">Featured · Dashboard 01 · <span class="dot">●</span> Live</div>
+    <p class="q">How do national museums pay their way?</p>
+    <h2 id="f-title"><a href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener">Museum Income Benchmark</a></h2>
+    <p>How do England's national museums pay their way? Compare visitors, earned income and fundraising across 15 national museums and galleries, before and after the pandemic.</p>
+    <div class="big"><b>£0.42</b><span>of charitable giving for every £1 of government grant in 2024/25, down from £0.44 in 2018/19</span></div>
+    <p>Official DCMS figures from 2008/09 to 2024/25 in real terms. Follow each museum's recovery since 2018/19, split self-generated income into admissions, trading and giving, set scale against fundraising, and rank museums in a league table.</p>
+    <a class="btn" href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    <a class="more" href="#w-museum">Read the write-up ↓</a>
+    <div class="thumbs">
+      <a href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/mib-t1.jpg" width="1100" height="825" loading="lazy" alt="Visits for each museum indexed to 2018/19"></a>
+      <a href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/mib-t2.jpg" width="1100" height="825" loading="lazy" alt="Bubble chart of visits against charitable giving"></a>
+      <a href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/mib-t3.jpg" width="1100" height="825" loading="lazy" alt="League table of museums ranked by giving per visit"></a>
+      <a href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/mib-t4.jpg" width="1336" height="1002" loading="lazy" alt="Volatility of each income stream by museum"></a>
+    </div>
+    <div class="tags">Python · Streamlit · Plotly · pandas · DCMS official statistics</div>
+  </div>
+</section>
+
+<!-- 01 -->
+<section class="s" id="raising" aria-labelledby="s1">
+  <div class="ah">
+    <div class="num">01</div>
+    <div class="ch">Chapter one</div>
+    <h2 id="s1">Raising and banking the money</h2>
+    <p>Who to ask again, whether a big campaign will reach its target, and whether every pound received reaches the books.</p>
+  </div>
+  <div class="grid">
+    <article class="card" id="d-donor">
+      <div class="row"><span>Dashboard 02</span><span class="live">● Live</span></div>
+      <div class="stat"><b>+47%</b><span>more net income than mailing every lapsed donor</span></div>
+      <a class="pic" href="https://donor-retention-lab.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/drl-card.jpg" width="1100" height="688" loading="lazy" alt="Heatmap of response rate by months since last gift and number of gifts"></a>
+      <p class="q">Who should we ask again?</p>
+      <h3><a href="https://donor-retention-lab.streamlit.app" target="_blank" rel="noopener">Donor Retention Lab</a></h3>
+      <p>Which past donors are worth asking again? See how supporters lapse, who responds to an appeal and how much more an appeal earns when it targets the right people.</p>
+      <p class="src">Real data · 1997 direct-mail appeal, 191,779 lapsed donors</p>
+      <div class="links"><a href="https://donor-retention-lab.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a><a href="#w-donor">Write-up ↓</a></div>
+    </article>
+    <article class="card" id="d-campaign">
+      <div class="row"><span>Dashboard 03</span><span class="live">● Live</span></div>
+      <div class="stat"><b>40%</b><span>chance of reaching £60m by March 2029; median finish £58.6m</span></div>
+      <a class="pic" href="https://campaign-gift-tracker.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/cgt-card.jpg" width="1100" height="688" loading="lazy" alt="Gift pyramid of secured and expected gifts beside a pipeline funnel by segment"></a>
+      <p class="q">Will the campaign make it?</p>
+      <h3><a href="https://campaign-gift-tracker.streamlit.app" target="_blank" rel="noopener">Campaign Gift Tracker</a></h3>
+      <p>Will a museum's fundraising campaign reach its target? See the gifts still needed, the pledge pipeline and a forecast of the finish, and test what would change the odds.</p>
+      <p class="src">Simulated data · fictional Northgate Museum</p>
+      <div class="links"><a href="https://campaign-gift-tracker.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a><a href="#w-campaign">Write-up ↓</a></div>
+    </article>
+    <article class="card wide" id="d-income">
+      <a class="pic" href="https://income-reconciliation-room.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/irr-card.jpg" width="1140" height="712" loading="lazy" alt="Waterfall from bank total to exact, fuzzy and bundled matches and unmatched income"></a>
+      <div class="row"><span>Dashboard 04</span><span class="live">● Live</span></div>
+      <div class="stat"><b>£845k</b><span>of Gift Aid lost in the year; £671k of it for want of a declaration</span></div>
+      <p class="q">Is every pound accounted for?</p>
+      <h3><a href="https://income-reconciliation-room.streamlit.app" target="_blank" rel="noopener">Income Reconciliation Room</a></h3>
+      <p>Does every pound a charity receives reach its records, and how much Gift Aid is going unclaimed? Follow income from bank to database, work the exceptions queue and spot unusual days.</p>
+      <p class="src">Simulated data · fictional Northgate Museum</p>
+      <div class="links"><a href="https://income-reconciliation-room.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a><a href="#w-income">Write-up ↓</a></div>
+    </article>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="s" id="supporters" aria-labelledby="s2">
+  <div class="ah">
+    <div class="num">02</div>
+    <div class="ch">Chapter two</div>
+    <h2 id="s2">Supporter data and compliance</h2>
+    <p>Whether the supporter database is clean enough to move, and whether the email list is as healthy as its open rate suggests.</p>
+  </div>
+  <div class="grid">
+    <article class="card" id="d-crm">
+      <div class="row"><span>Dashboard 05</span><span class="live">● Live</span></div>
+      <div class="stat"><b>3,763</b><span>estimated duplicate supporters; 70% of records ready to migrate</span></div>
+      <a class="pic" href="https://crm-data-quality-audit.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/crm-card.jpg" width="1050" height="656" loading="lazy" alt="Heatmap scoring six data-quality dimensions for each source system"></a>
+      <p class="q">Is the data ready to move?</p>
+      <h3><a href="https://crm-data-quality-audit.streamlit.app" target="_blank" rel="noopener">CRM Data Quality Audit</a></h3>
+      <p>Is a charity's supporter database ready for a new CRM? Find duplicate supporters, score data quality, flag consent risks and see what bad data costs.</p>
+      <p class="src">Simulated data · fictional Northgate Museum</p>
+      <div class="links"><a href="https://crm-data-quality-audit.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a><a href="#w-crm">Write-up ↓</a></div>
+    </article>
+    <article class="card" id="d-email">
+      <div class="row"><span>Dashboard 06</span><span class="live">● Live</span></div>
+      <div class="stat"><b>30.5%</b><span>adjusted open rate, against 59.6% raw; 73% of the list has valid consent</span></div>
+      <a class="pic" href="https://email-consent-health.streamlit.app" target="_blank" rel="noopener"><img src="assets/previews/ech-card.jpg" width="1050" height="656" loading="lazy" alt="Raw and adjusted email open rates over time with the click rate"></a>
+      <p class="q">How healthy is the email list?</p>
+      <h3><a href="https://email-consent-health.streamlit.app" target="_blank" rel="noopener">Email Consent Health</a></h3>
+      <p>How healthy is a charity's email list? See open rates with privacy-inflated opens removed, how fast subscribers drift away, when sending more backfires and how much of the list has valid consent.</p>
+      <p class="src">Simulated data · fictional Northgate Museum</p>
+      <div class="links"><a href="https://email-consent-health.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a><a href="#w-email">Write-up ↓</a></div>
+    </article>
+  </div>
+</section>
+
+<!-- 03 write-ups -->
+<section class="s" id="write-ups" aria-labelledby="s3">
+  <div class="ah">
+    <div class="num">03</div>
+    <div class="ch">Chapter three</div>
+    <h2 id="s3">Methods and write-ups</h2>
+    <p>For each dashboard: the question, the data, the method, the main results and what to be careful about. Figures are as published in each app.</p>
+  </div>
+
+  <article class="wu" id="w-museum">
+    <div class="side">
+      <div class="n">01</div>
+      <h3>Museum Income Benchmark</h3>
+      <p class="meta">England · 2008/09 – 2024/25 · 15 DCMS-sponsored museums and galleries · official statistics</p>
+      <a class="btn" href="https://museum-income-benchmark.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+    <div class="body">
+      <h4>Question</h4>
+      <p class="lead">How do England's national museums pay their way, and how far have visits and fundraising recovered since the pandemic?</p>
+      <h4>Data</h4>
+      <p>DCMS sponsored museums annual performance indicators 2024/25; DCMS total income of DCMS-funded cultural organisations (2023/24 and 2024/25 releases); DCMS monthly visits to June 2026; HM Treasury GDP deflators (October 2026 Budget). Crown copyright, Open Government Licence v3.0.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>Self-generated income = admissions + trading (net profit) + charitable giving. Grant-in-aid is shown separately.</li>
+        <li>Real terms in 2024/25 prices using GDP deflators, with a switch to nominal.</li>
+        <li>Donated objects are taken out of fundraising by default, because a few large gifts of objects would swamp the cash figures. In 2024/25 the British Museum alone recorded about £915m of donated objects.</li>
+        <li>Recovery is each museum's visits or income indexed to 2018/19 = 100. Medians and quartiles always use all 15 museums.</li>
+        <li>Volatility is the coefficient of variation of each income stream over the eight years to the chosen end year.</li>
+        <li>Museum totals match DCMS's published totals exactly from 2015/16.</li>
+      </ul>
+      <h4>Main results</h4>
+      <p>In 2024/25 the 15 museums had 41.9m visits, 16% below 2018/19, and only 6 of 15 had more visitors than before the pandemic. Self-generated income was £347m, 9% higher in real terms. Charitable giving was £206m (+10%), 59% of self-generated income, with admissions and trading at 20% each. Every £1 of grant-in-aid was matched by £0.42 of giving (£0.44 in 2018/19). The National Gallery raised the most per visit (£12.71, against a median of £3.80). For the typical museum, trading was the most volatile income stream.</p>
+      <h4>What you can explore</h4>
+      <p>Choose museums, years, real or nominal prices, and whether to include donated objects. Highlight one museum across the recovery lines, the income mix (£, £ per visit or % share), the scale-versus-fundraising chart, the league table with quartile shading and trend lines, and the volatility chart.</p>
+      <h4>Caveats</h4>
+      <ul>
+        <li>The Museum of the Home was closed from 2018 to 2021, so its recovery index is about 470 and shown off the scale.</li>
+        <li>DCMS visit totals also count the National Coal Mining Museum, which is not one of the 15 (41.9m here against DCMS's 42.0m). Tyne and Wear Museums are excluded, so totals before 2015/16 are a few per cent below DCMS's.</li>
+        <li>Trading is net profit and can be negative. Fundraising figures depend heavily on how donated objects are treated.</li>
+      </ul>
+      <figure>
+        <img src="assets/previews/mib-figure.jpg" width="1100" height="660" loading="lazy" alt="Dashboard header with five headline figures for 2024/25">
+        <figcaption>The dashboard's headline figures for 2024/25: all 15 museums, real terms, excluding donated objects.</figcaption>
+      </figure>
+      <a class="top-link" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <article class="wu" id="w-donor">
+    <div class="side">
+      <div class="n">02</div>
+      <h3>Donor Retention Lab</h3>
+      <p class="meta">US direct-mail appeal, June 1997 · 191,779 lapsed donors · real data</p>
+      <a class="btn" href="https://donor-retention-lab.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+    <div class="body">
+      <h4>Question</h4>
+      <p class="lead">Which past donors are worth writing to again, and how much more does a targeted appeal raise than mailing everyone?</p>
+      <h4>Data</h4>
+      <p>The KDD Cup 1998 data set (UCI Machine Learning Repository, CC BY 4.0): an appeal by a US national veterans organisation to donors who had stopped giving. The learning file (95,412 donors) trains the models; the validation file (96,367 donors), with its answers, tests them. Values are in US dollars and not adjusted for inflation.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>An RFM map of response by recency and frequency, with circles sized by average gift.</li>
+        <li>Retention: a cohort heatmap by year of first gift, and Kaplan–Meier curves of active giving by gift size (lapsed = no gift for 24 months).</li>
+        <li>Who responds: a LightGBM model compared with logistic regression on RFM alone, checked for calibration, with SHAP for the main drivers.</li>
+        <li>How much: a gamma GLM for gift size. Expected gift = chance of giving × predicted gift; a donor is mailed when the expected gift beats the $0.68 cost of a letter.</li>
+        <li>A profit curve on the hold-out donors, against an RFM scoring rule and mailing everyone.</li>
+      </ul>
+      <h4>Main results</h4>
+      <p>Mailing every hold-out donor nets $10,560, the same figure published for the 1998 competition. Mailing only the model's list (52,215 letters, 54% of the file) nets $15,474, which is $4,913 or 47% more. The best RFM-rule cut-off makes $11,899; the published competition winner made $14,712. The model ranks donors better than RFM alone (AUC 0.629 against 0.601). The best RFM cell, donors with 4+ gifts whose last gift was within 14 months, responded at 14.3%, four times the weakest cell. Small-gift donors give more often and stay longer: a median active life of 6.2 years under $10, against 1.1 years at $25 and over.</p>
+      <h4>What you can explore</h4>
+      <p>Filter by area type, age and gift size, and change the cost of a letter. Every chart updates: the RFM map, retention, the response drivers and calibration, the profit curve, and a lookup that shows one donor's history and whether they would get a letter.</p>
+      <h4>Caveats</h4>
+      <ul>
+        <li>Response is rare (about 5%) and noisy. Even the top tenth of donors gives only about 1 time in 9.</li>
+        <li>The best cut-off in hindsight is chosen on the test set and labelled as such.</li>
+        <li>The gift size band uses each donor's average gift, because the file has no first-gift amount.</li>
+        <li>This is 1990s US data, and the models use 2026 tools, so the comparison with the 1998 entrants is not like for like.</li>
+      </ul>
+      <figure>
+        <img src="assets/previews/drl-figure.jpg" width="1100" height="759" loading="lazy" alt="Profit curve of net income against share of the file mailed for the model, an RFM rule and mailing everyone">
+        <figcaption>Net income on the hold-out donors by share of the file mailed: the model's list against an RFM rule and mailing everyone.</figcaption>
+      </figure>
+      <a class="top-link" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <article class="wu" id="w-campaign">
+    <div class="side">
+      <div class="n">03</div>
+      <h3>Campaign Gift Tracker</h3>
+      <p class="meta">Fictional Northgate Museum · £60m campaign, April 2024 – March 2029 · position at 31 October 2026 · simulated data</p>
+      <a class="btn" href="https://campaign-gift-tracker.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+    <div class="body">
+      <h4>Question</h4>
+      <p class="lead">Will a capital campaign reach its £60m target, which gifts are still missing, and what would change the odds?</p>
+      <h4>Data</h4>
+      <p>Simulated (fixed seed): prospects, their stage histories, pledges and instalments for a fictional museum's New Galleries Campaign. No real donors or institutions appear.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>A gift pyramid of seven bands, from one £9m lead gift down, halving in size and doubling in number.</li>
+        <li>Stage conversion as a Beta-binomial model for each segment and stage; a prospect's chance of pledging is the product of the forward rates from its current stage.</li>
+        <li>Close dates drawn from the stage-duration history, allowing for time already spent in the stage.</li>
+        <li>A 10,000-run Monte Carlo that also draws the conversion rates, so their uncertainty is included. The what-if panel re-runs 2,000 simulations with common random numbers.</li>
+        <li>Cash from instalment schedules, with a 3% write-off and Gift Aid at 25% on eligible individual gifts.</li>
+      </ul>
+      <h4>Main results</h4>
+      <p>At 31 October 2026, £40.7m was pledged (68% of target), £19.4m had arrived in cash (plus £983k Gift Aid), and 206 open prospects made up a weighted pipeline of £21.1m. The chance of reaching £60m by March 2029 is 40%, with a median finish of £58.6m and an 80% range of £51.8m to £64.3m. The biggest gap is the £4.5m band: none of its 2 gifts is secured and none is in the pipeline. Ten points more solicitation success lifts the odds to 62%; five new £1m prospects to 50%; a six-month delay drops them to 36%.</p>
+      <h4>What you can explore</h4>
+      <p>Filter by segment and fundraiser. See the gift pyramid, the pipeline funnel by value or count, the forecast fan, what-if sliders, pledges against cash to 2031, and the next 20 asks with a flag for prospects stuck in a stage.</p>
+      <h4>Caveats</h4>
+      <ul>
+        <li>All data is simulated; the story was tuned so that the odds sit near 40%.</li>
+        <li>Prospects not yet identified are not modelled, so the forecast leans cautious.</li>
+        <li>The filters do not apply to the forecast or the what-if panel, which always cover the whole campaign.</li>
+      </ul>
+      <figure>
+        <img src="assets/previews/cgt-figure.jpg" width="1100" height="601" loading="lazy" alt="Fan chart of cumulative pledges with forecast bands to 2029 and the £60m target line">
+        <figcaption>Pledges so far and the forecast range of finishes to March 2029, against the £60m target.</figcaption>
+      </figure>
+      <a class="top-link" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <article class="wu" id="w-income">
+    <div class="side">
+      <div class="n">04</div>
+      <h3>Income Reconciliation Room</h3>
+      <p class="meta">Fictional Northgate Museum · financial year 2025/26 · 123,668 bank lines · simulated data</p>
+      <a class="btn" href="https://income-reconciliation-room.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+    <div class="body">
+      <h4>Question</h4>
+      <p class="lead">Does every pound a charity receives reach its supporter database, and how much Gift Aid is claimed, still claimable or lost?</p>
+      <h4>Data</h4>
+      <p>Simulated (fixed seed): a year of bank lines, CRM gifts, giving-platform payouts and Gift Aid declarations across nine channels, with seven planted events such as a payment outage and a Giving Tuesday appeal. Gift Aid rules from gov.uk, checked 18 November 2026.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>A three-pass matcher: exact (amount, date and reference), fuzzy (text similarity on references, with a guard against generic references) and bundled (platform payouts split into their gifts).</li>
+        <li>Matches with confidence below 0.80 go to an exceptions queue with a suggested match and a reason.</li>
+        <li>Gift Aid status for every gift, including the donor-benefit limits and the four-year claim deadline.</li>
+        <li>Processing time from bank receipt to CRM entry, against a five-working-day target.</li>
+        <li>Unusual days: seasonal-trend decomposition of daily income, then a robust z-score beyond 3.5.</li>
+      </ul>
+      <h4>Main results</h4>
+      <p>Of £21.51m received, 94.0% is reconciled by value; £1.29m in the bank has no CRM gift, and £1.19m in the CRM has no money in the bank. The exceptions queue holds 13,270 items, 80% with a suggested match. Gift Aid of £1.08m was claimed out of £2.40m possible; £845k is lost, £671k of it for lack of a declaration, and £9.0k from 2022/23 must be claimed by 31 March 2027. 85% of receipts were entered within five working days. The monitor flagged 26 days, including all seven planted events. Overall matcher precision is 99.8% and recall 96.7%.</p>
+      <h4>What you can explore</h4>
+      <p>Choose months and channels. Check that the reconciliation waterfall ties to the penny, sort and download the exceptions queue, break Gift Aid down by month and reason, compare processing speed by channel, and step through the daily income monitor one channel at a time.</p>
+      <h4>Caveats</h4>
+      <ul>
+        <li>All data is simulated; matcher quality can be measured only because the true links are known.</li>
+        <li>Direct Debits, platform payouts, legacies and major gifts arrive on fixed dates or in large one-offs, so they are not monitored day by day.</li>
+        <li>Gift Aid rules are applied as published, assuming a 31 March year end. This is not tax advice.</li>
+      </ul>
+      <figure>
+        <img src="assets/previews/irr-figure.jpg" width="1140" height="675" loading="lazy" alt="Monthly stacked bars of Gift Aid claimed, claimable, held and lost by reason">
+        <figcaption>Gift Aid by month: claimed, claimable now, held until reconciled, and lost by reason.</figcaption>
+      </figure>
+      <a class="top-link" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <article class="wu" id="w-crm">
+    <div class="side">
+      <div class="n">05</div>
+      <h3>CRM Data Quality Audit</h3>
+      <p class="meta">Fictional Northgate Museum · 50,737 supporter records from four systems · simulated data</p>
+      <a class="btn" href="https://crm-data-quality-audit.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+    <div class="body">
+      <h4>Question</h4>
+      <p class="lead">Is a charity's supporter database ready to move to a new CRM: how many duplicates, how clean, how risky, and what does bad data cost?</p>
+      <h4>Data</h4>
+      <p>Simulated with Faker (en_GB) and a fixed seed, with planted duplicates (nicknames, house moves, swapped names) and a truth table to check against. Every record is invented; tables show IDs where possible.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>Probabilistic record linkage (Fellegi–Sunter, with Splink and DuckDB), trained by expectation-maximisation. Candidate pairs share a postcode, an email, or a surname and first initial; nicknames are mapped to formal names first.</li>
+        <li>Precision and recall against the truth table at every match threshold.</li>
+        <li>A scorecard of six dimensions (completeness, validity, uniqueness, consistency, timeliness, accuracy) for each source system.</li>
+        <li>Six weighted compliance flags inspired by UK GDPR and PECR, an annual cost model, and migration rules before and after an automated clean-up.</li>
+      </ul>
+      <h4>Main results</h4>
+      <p>At a threshold of 0.90 there are about 3,763 surplus duplicate records (7.4%) in 3,198 clusters, found with 99.8% precision and 81.0% recall. Overall quality scores 90 out of 100; the weakest cell is timeliness in the old CRM (55). 23,148 records carry compliance flags, 3,074 of them high-risk. Bad data costs about £24.8k a year at the default assumptions. 70% of records pass every migration rule, 84% after clean-up; missing consent evidence remains the main blocker.</p>
+      <h4>What you can explore</h4>
+      <p>Filter by source system and supporter type. A single threshold slider drives the whole page. See example duplicate clusters, the highest-risk records (IDs only), cost sliders for mailings and pack costs, and the old-to-new field mapping.</p>
+      <h4>Caveats</h4>
+      <ul>
+        <li>All data is simulated. Missed duplicates are mostly people who moved house and changed email, so they share no key.</li>
+        <li>The compliance rules are illustrative, not legal advice.</li>
+        <li>The cost figure leaves out staff time, reputational harm and fines, so it is a floor.</li>
+      </ul>
+      <figure>
+        <img src="assets/previews/crm-figure.jpg" width="1050" height="560" loading="lazy" alt="Precision, recall and F1 plotted against match threshold with results at 0.90">
+        <figcaption>Duplicate finder: precision, recall and F1 by match threshold, with the result at 0.90.</figcaption>
+      </figure>
+      <a class="top-link" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+
+  <article class="wu" id="w-email">
+    <div class="side">
+      <div class="n">06</div>
+      <h3>Email Consent Health</h3>
+      <p class="meta">Fictional Northgate Museum · November 2024 – October 2026 · about 300,000 people, 200 campaigns · simulated data</p>
+      <a class="btn" href="https://email-consent-health.streamlit.app" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+    <div class="body">
+      <h4>Question</h4>
+      <p class="lead">How healthy is a charity's email list once privacy-inflated opens are removed, how fast do subscribers drift away, when does sending more backfire, and how much of the list has valid consent?</p>
+      <h4>Data</h4>
+      <p>Simulated (fixed seed); only aggregated tables are stored. Rules checked on 18 November 2026: Gmail asks bulk senders to keep spam complaints below 0.3% (ideally 0.1%), and the PECR charitable-purpose soft opt-in has been in force since 5 February 2026.</p>
+      <h4>Method</h4>
+      <ul>
+        <li>Apple Mail Privacy Protection opens flagged by a heuristic (Apple Mail, Apple proxy, opened within two minutes, no click), scored per person per campaign.</li>
+        <li>Kaplan–Meier curves of how long subscribers stay reachable, by sign-up source. Lost = unsubscribed, complained, hard-bounced or no click for 12 months.</li>
+        <li>A Cox model with a 90-day landmark to avoid immortal-time bias (concordance 0.67).</li>
+        <li>A monotone GAM of unsubscribe chance against emails received in the previous 30 days.</li>
+        <li>Spam-complaint rates per campaign against the 0.1% and 0.3% lines, and consent records by source and age.</li>
+      </ul>
+      <h4>Main results</h4>
+      <p>There are 155,219 active subscribers, 7.1% fewer than two years earlier. The raw open rate of 59.6% falls to 30.5% once machine opens are removed (the heuristic has 80% precision and 85% recall), so clicks (9.8%) are the better guide. Only 35% of Exhibition Wi-Fi sign-ups are still reachable after 12 months, against 84% for members. From 8 emails in 30 days, the chance of an unsubscribe is at least double that after one. 2 of 200 campaigns broke the 0.3% complaint ceiling, and 73% of the list has a complete consent record.</p>
+      <h4>What you can explore</h4>
+      <p>Filter by segment, sign-up source and months. Set a sending frequency to see expected unsubscribes, sort the campaign table, and switch the soft opt-in scenario on or off.</p>
+      <h4>Caveats</h4>
+      <ul>
+        <li>All data is simulated. The adjusted open rate sits about 2 points below the truth, because Apple's proxy also hides some real opens.</li>
+        <li>The 12-month no-click rule causes a visible step in the decay curves.</li>
+        <li>The fatigue curves and the Cox model use the full two years, whatever the month filter. Legal rules are illustrative, not legal advice, and can change.</li>
+      </ul>
+      <figure>
+        <img src="assets/previews/ech-figure.jpg" width="1050" height="680" loading="lazy" alt="Curve of unsubscribe chance against emails received in the previous 30 days with a danger zone from 8 emails">
+        <figcaption>Fatigue: the chance an email triggers an unsubscribe, by emails received in the previous 30 days.</figcaption>
+      </figure>
+      <a class="top-link" href="#top">Back to top ↑</a>
+    </div>
+  </article>
+</section>
+</main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="name">Farzad Vaziri<i>Fundraising and charity · live dashboards</i></div>
+    <div>
+      <p><b>Data.</b> Museum figures: DCMS and HM Treasury, Crown copyright, Open Government Licence v3.0. Donor data: KDD Cup 1998, UCI Machine Learning Repository, CC BY 4.0. Dashboards 03 to 06 use simulated data about a fictional charity, Northgate Museum; no real donor, supporter or transaction appears.</p>
+      <p><b>Waking up.</b> The dashboards run on Streamlit Community Cloud and sleep when idle. The first visit can take up to 30 seconds; if you see a wake-up screen, click the button and wait.</p>
+      <p>These are portfolio dashboards, not official statistics, and nothing here is legal, tax or financial advice.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
